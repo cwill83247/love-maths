@@ -1,4 +1,4 @@
-console.log("testing, testing 123")
+console.log("testing, testing 123");
 
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("You clicked Submit!");
             } else {
                 let gameType = this.getAttribute("data-type");
-                alert(`You clicked ${gameType}`);
+                runGame("gameType");
             }
         });
     }
+
+runGame("addition");
+
 });
 
 /**
@@ -25,11 +28,11 @@ function runGame(gameType) {
     let num1 = Math.floor(Math.random () * 25)+1 ;
     let num2 = Math.floor(Math.random () * 25)+1 ;
 
-    if (gameType == "addition") {
-       displayAdditionQuestion(num1, num2);
+    if (gameType === "addition") {
+       displayAdditionQuestion (num1, num2);
     } else {
-        alert('unknown game type: ${gameType');
-        throw 'unknown game type: ${gameType} Aborting!' ;
+        alert(`unknown game type: ${gameType}`);
+        throw `unknown game type: ${gameType}. Aborting!` ;
     }
 
 }

@@ -15,9 +15,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+/**
+ * the main game loop we are using a DOCSTRING here 
+ * script called when game is first loaded.. the function can then be hovered over when in script and will show this info 
+ */
+
 function runGame() {
+        //creates 2 random whole numbers between 1 and 25 and assign them to num1 and num 2
+    let num1 = Math.floor(Math.random () * 25)+1 ;
+    let num2 = Math.floor(Math.random () * 25)+1 ;
 
 }
+runGame();
 
 function checkAnswer() {
 

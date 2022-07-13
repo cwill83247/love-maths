@@ -29,8 +29,11 @@ function runGame(gameType) {
     let num2 = Math.floor(Math.random () * 25)+1 ;                 
 
     if (gameType === "addition") {                                            
-       displayAdditionQuestion (num1, num2);                                    
-    } else {
+       displayAdditionQuestion (num1, num2);  
+    } else if (gameType === "multiply") {                      //multiply start                                       
+         displayMultiplyQuestion (num1, num2);                                    
+    }                                                             //multiply end                             
+      else {
         alert(`unknown game type: ${gameType}`);                                
         throw `unknown game type: ${gameType}. Aborting!`;                     
     }                                                                             
@@ -65,6 +68,8 @@ function calculateCorrectAnswer() {
  let operator = document.getElementById("operator").innerText;     // do I need ("operator") instead of ('operator') not sure
     if (operator === "+") {                        // if its a + then 
         return[operand1 + operand2, "addition"]     //returns an ARRAY  the result of operand 1 + operand 2 , and also return the word "addition"
+    }else if (operator === "*") {   
+    return [operand1 * operand2, "multiply"]
     } else {
         alert(`operator function not done yet: ${operator}`);                                
         throw `operator function not done yet: ${operator}. Aborting!`;        
@@ -83,8 +88,8 @@ function incrementScore() {
  * this is checking current value in DOM for incorrect score , incrementing by 1 
  */
 function incrementWrongAnswer() {
-    let oldScore = parseInt(document.getElementById("incorrect").innerText);  // score is our html id , the inner text is whats grabbing the score from it.. 
-    document.getElementById("incorrect").innerText = ++oldScore; //so we are setting a new value for score using old score and incrementing
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);  // GET score is our html id , the inner text is whats grabbing the score from it.. 
+    document.getElementById("incorrect").innerText = ++oldScore; //UPDATE so we are setting a new value for score using old score and incrementing
    
 }
 /**
@@ -101,6 +106,8 @@ function displaySubtractQuestion() {
 
 }
 
-function displayMultiplyQuestion() {
-
+function displayMultiplyQuestion(operand1, operand2) {      //these are the arguments the function is expecting 
+    document.getElementById('operand1').textContent = operand1;        // this is grabbing whatever random value we get and putting it into the HTML page
+    document.getElementById('operand2').textContent = operand2;       // unsure exactly which operand is doing which or were value is coming from.. REVISIT
+    document.getElementById('operator').textContent = "*"; 
 }

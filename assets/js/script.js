@@ -46,15 +46,14 @@ function checkAnswer() {
     let isCorrect = userAnswer === calculatedAnswer[0];  // comparing however needed to add [0] becase calculate answer returns an Array and we want the first part.
 
     if (isCorrect) {                                  //checking if isCorrect is true i.e results are the same
-        alert("correct answer");                      //if true display message          
+        incrementScore();                      //if true increments correct score by calling FUNCTION incrementScore()          
         
     } else {                                                                 
-        alert(`sorry incorrect this time the answer is: ${calculatedAnswer[0]}`);  //if false return a message and show the answer donmt forget its an array hence [0]
+        alert(`sorry incorrect this time the answer is: ${calculatedAnswer[0]}`);  //if false return a message and show the answer dont forget its an array hence [0]
+        incrementWrongAnswer()  // and increment wrong answer ...
     }
-        runGame(calculatedAnswer[1]);  // we run another addition question using the 2nd value from the array whci his "addition","subtract" etc..
+        runGame(calculatedAnswer[1]);  // we run another  question using the 2nd value from the array which his "addition","subtract" etc.. to determine the game to run again..
 }
-
-
 
 /**
  * gets the operands ( operand 1 and 2) and the operator
@@ -72,15 +71,25 @@ function calculateCorrectAnswer() {
 
     }
 }
-
+/**
+ * this is checking current value in DOM for correct, incrementing by 1 
+ */
 function incrementScore() {
+ let oldScore = parseInt(document.getElementById("score").innerText);  // score is our html id , the inner text is whats grabbing the score from it.. 
+ document.getElementById("score").innerText = ++oldScore; //so we are setting a new value for score using old score and incrementing
 
 }
-
+/**
+ * this is checking current value in DOM for incorrect score , incrementing by 1 
+ */
 function incrementWrongAnswer() {
-
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);  // score is our html id , the inner text is whats grabbing the score from it.. 
+    document.getElementById("incorrect").innerText = ++oldScore; //so we are setting a new value for score using old score and incrementing
+   
 }
-
+/**
+ * this put the values and the operator into the HTML page
+ */
 function displayAdditionQuestion(operand1, operand2) {    //adding arguments     
     document.getElementById('operand1').textContent = operand1;        // this is grabbing whatever random value we get and putting it into the HTML page
     document.getElementById('operand2').textContent = operand2;       // unsure exactly which operand is doing which or were value is coming from.. REVISIT

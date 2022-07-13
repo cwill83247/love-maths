@@ -31,8 +31,10 @@ function runGame(gameType) {
     if (gameType === "addition") {                                            
        displayAdditionQuestion (num1, num2);  
     } else if (gameType === "multiply") {                      //multiply start                                       
-         displayMultiplyQuestion (num1, num2);                                    
-    }                                                             //multiply end                             
+         displayMultiplyQuestion (num1, num2);                 //multiply end                                
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion (num1, num2);
+    }                                                                                            
       else {
         alert(`unknown game type: ${gameType}`);                                
         throw `unknown game type: ${gameType}. Aborting!`;                     
@@ -70,7 +72,10 @@ function calculateCorrectAnswer() {
         return[operand1 + operand2, "addition"]     //returns an ARRAY  the result of operand 1 + operand 2 , and also return the word "addition"
     }else if (operator === "*") {   
     return [operand1 * operand2, "multiply"]
-    } else {
+    }else if (operator ==="-") {
+        return[operand1 - operand2, "subtract"]
+    }
+    else {
         alert(`operator function not done yet: ${operator}`);                                
         throw `operator function not done yet: ${operator}. Aborting!`;        
 
@@ -102,12 +107,15 @@ function displayAdditionQuestion(operand1, operand2) {    //adding arguments
 }
 
 
-function displaySubtractQuestion() {
-
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1: operand2 ;  //uses Ternary Operator  this is grabbing whatever random value we get and putting it into the HTML page
+    document.getElementById('operand2').textContent = operand2 > operand1 ? operand1: operand2 ;       // unsure exactly which operand is doing which or were value is coming from.. REVISIT
+    document.getElementById('operator').textContent = "-";          // we are setting operating to MINUS
 }
+
 
 function displayMultiplyQuestion(operand1, operand2) {      //these are the arguments the function is expecting 
     document.getElementById('operand1').textContent = operand1;        // this is grabbing whatever random value we get and putting it into the HTML page
-    document.getElementById('operand2').textContent = operand2;       // unsure exactly which operand is doing which or were value is coming from.. REVISIT
+    document.getElementById('operand2').textContent = operand2;    // unsure exactly which operand is doing which or were value is coming from.. REVISIT
     document.getElementById('operator').textContent = "*"; 
 }

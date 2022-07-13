@@ -14,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }               
         });                                                              
     }                                                                     
- 
+document.getElementById("answer-box").addEventListener("keydown", function(event) {  // listenting for key press    
+    if(event.key ==="Enter") {                                                         //checks the properties of that event object to see if it was the Enter key
+        checkAnswer();
+    }
+}) 
 runGame("addition")    //this game runs on startup ----  how does this link to correct game ??????
 });                                                                    
 
@@ -24,7 +28,11 @@ runGame("addition")    //this game runs on startup ----  how does this link to c
  */
 
 function runGame(gameType) {                                  
-        //creates 2 random whole numbers between 1 and 25 and assign them to num1 and num 2
+    
+    document.getElementById("answer-box").value=""; // this sets answer box to blank evertme game runs
+    document.getElementById("answer-box").focus();   // this makes the cursor sit in the answer box everytime runGame runs 
+
+    //creates 2 random whole numbers between 1 and 25 and assign them to num1 and num 2
     let num1 = Math.floor(Math.random () * 25)+1 ;                
     let num2 = Math.floor(Math.random () * 25)+1 ;                 
 
@@ -34,6 +42,8 @@ function runGame(gameType) {
          displayMultiplyQuestion (num1, num2);                 //multiply end                                
     } else if (gameType === "subtract") {
         displaySubtractQuestion (num1, num2);
+    } else if (gameType === "divide") {
+        displayDivideQuestion (num1, num2);
     }                                                                                            
       else {
         alert(`unknown game type: ${gameType}`);                                
@@ -74,7 +84,10 @@ function calculateCorrectAnswer() {
     return [operand1 * operand2, "multiply"]
     }else if (operator ==="-") {
         return[operand1 - operand2, "subtract"]
+    }else if (operator ==="/") {
+        return[operand1 / operand2, "divide"]    
     }
+    
     else {
         alert(`operator function not done yet: ${operator}`);                                
         throw `operator function not done yet: ${operator}. Aborting!`;        
@@ -118,4 +131,10 @@ function displayMultiplyQuestion(operand1, operand2) {      //these are the argu
     document.getElementById('operand1').textContent = operand1;        // this is grabbing whatever random value we get and putting it into the HTML page
     document.getElementById('operand2').textContent = operand2;    // unsure exactly which operand is doing which or were value is coming from.. REVISIT
     document.getElementById('operator').textContent = "*"; 
+}
+
+function displayDivideQuestion(operand1, operand2) {      //these are the arguments the function is expecting 
+    document.getElementById('operand1').textContent = operand1;        // this is grabbing whatever random value we get and putting it into the HTML page
+    document.getElementById('operand2').textContent = operand2;    // unsure exactly which operand is doing which or were value is coming from.. REVISIT
+    document.getElementById('operator').textContent = "/";        // we are telling it what operator to input into the html 
 }

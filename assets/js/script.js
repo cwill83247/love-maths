@@ -64,7 +64,7 @@ function checkAnswer() {
         incrementScore();                      //if true increments correct score by calling FUNCTION incrementScore()          
         
     } else {                                                                 
-        alert(`sorry incorrect this time the answer is: ${calculatedAnswer[0]}`);  //if false return a message and show the answer dont forget its an array hence [0]
+        alert(`sorry Jack incorrect this time the answer is: ${calculatedAnswer[0]}`);  //if false return a message and show the answer dont forget its an array hence [0]
         incrementWrongAnswer()  // and increment wrong answer ...
     }
         runGame(calculatedAnswer[1]);  // we run another  question using the 2nd value from the array which his "addition","subtract" etc.. to determine the game to run again..
@@ -134,7 +134,8 @@ function displayMultiplyQuestion(operand1, operand2) {      //these are the argu
 }
 
 function displayDivideQuestion(operand1, operand2) {      //these are the arguments the function is expecting 
-    document.getElementById('operand1').textContent = operand1;        // this is grabbing whatever random value we get and putting it into the HTML page
-    document.getElementById('operand2').textContent = operand2;    // unsure exactly which operand is doing which or were value is coming from.. REVISIT
+    operand1 = operand1 * operand2;
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1: operand2 ;      // this is grabbing whatever random value we get and putting it into the HTML page
+    document.getElementById('operand2').textContent = operand2 > operand1 ? operand1: operand2 ;   // unsure exactly which operand is doing which or were value is coming from.. REVISIT
     document.getElementById('operator').textContent = "/";        // we are telling it what operator to input into the html 
 }
